@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include "../utils/utils.h" // ../ means go back one folder
 using namespace std;
 
 struct Plant {
@@ -12,41 +12,12 @@ struct Plant {
     Plant* right;
 };
 
-// HELPER FUNCTIONS
-bool isValidName(string name) {
-    return !name.empty();
-}
-
 string getStatus(int g) {
     if (g >= 7) return "Thriving";
     if (g <= 3) return "Struggling";
     return "Normal";
 }
 
-int getInt(int minVal, int maxVal, const string& prompt) {
-    int val;
-    cout << prompt;
-    cin >> val;
-    while (cin.fail() || val < minVal || val > maxVal) {
-        cout << "Invalid input! Enter between " << minVal << "-" << maxVal << ": ";
-        cin.clear();
-        cin.ignore(1000, '\n');
-        cin >> val;
-    }
-    return val;
-}
-
-string getValidName(const string& prompt) {
-    string name;
-    cout << prompt;
-    cin.ignore(1000, '\n');
-    getline(cin, name);
-    while (!isValidName(name)) {
-        cout << "Invalid name! Name cannot be empty.\n" << prompt;
-        getline(cin, name);
-    }
-    return name;
-}
 
 Plant takeInput() {
     Plant p;
@@ -65,7 +36,8 @@ void printPlant(Plant* p) {
     cout << "Water Level: " << p->waterLevel << "/10\n";
 }
 
-// AVL FUNCTIONS
+
+/* ---AVL Functions--- */
 int maxOf(int a, int b) { return (a > b) ? a : b; }
 
 int getAvlHeight(Plant* node) { return (node == nullptr) ? 0 : node->avlHeight; }
@@ -156,7 +128,7 @@ void updatePlant(Plant* root, string name) {
     cout << "Growth Rate: " << plant->growthRate << " (" << getStatus(plant->growthRate) << ")\n";
 }
 
-// DAILY GROWTH TRACKING FUNCTION
+// Daily growth tracking function
 void dailyGrowthUpdate(Plant* root) {
     if (!root) return;
     dailyGrowthUpdate(root->left);
@@ -199,9 +171,13 @@ void showStrugglingPlants(Plant* root) {
     showStrugglingPlants(root->right);
 }
 
-int main() {
+
+/* ---main function for this module--- */ 
+void runPlantMgt(){
+
     Plant* root = nullptr;
     int choice;
+
     do {
         cout << "\n===== PLANT MANAGEMENT SYSTEM (AVL TREE) =====\n";
         cout << "1. Add Plant\n";
@@ -253,5 +229,5 @@ int main() {
                 cout << "Exiting system. Goodbye!\n";
         }
     } while (choice != 8);
-    return 0;
+    
 }
