@@ -1,5 +1,3 @@
-// bhai ye code boht kam lines ka hai to classes na hi banai jain to acha hai
-// is lia classes ni banai
 #include <iostream>
 #include <string>
 using namespace std;
