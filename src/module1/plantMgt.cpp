@@ -22,9 +22,9 @@ string getStatus(int g) {
 Plant takeInput() {
     Plant p;
     p.name = getValidName("Enter Plant Name: ");
-    p.growthRate = getInt(1, 10, "Enter Growth Rate (1-10): ");
-    p.sunlightHours = getInt(0, 24, "Enter Daily Sunlight Hours: ");
-    p.waterLevel = getInt(1, 10, "Enter Water Level (1-10): ");
+    p.growthRate = getValidIntChoice(1, 10, "Enter Growth Rate (1-10): ");
+    p.sunlightHours = getValidIntChoice(0, 24, "Enter Daily Sunlight Hours: ");
+    p.waterLevel = getValidIntChoice(1, 10, "Enter Water Level (1-10): ");
     return p;
 }
 
@@ -188,7 +188,7 @@ void runPlantMgt(){
         cout << "6. Show Thriving Plants\n";
         cout << "7. Show Struggling Plants\n";
         cout << "8. Exit\n";
-        choice = getInt(1, 8, "Enter your choice: ");
+        choice = getValidIntChoice(1, 8, "Enter your choice: ");
 
         switch (choice) {
             case 1:

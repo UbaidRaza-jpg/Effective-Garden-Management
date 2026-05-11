@@ -1,40 +1,14 @@
-#include<string>
 #include<vector>
+#include "../models/Supply.h"
+#include "../utils/utils.h"
 using namespace std;
 
-struct Season{
-    bool su = false;
-    bool wi = false;
-    bool au = false;
-    bool sp = false;
-};
-
-struct Supply{
-    string name;
-    int price;
-    int benefitScore;
-    Season seasons;
-};
 
 class ResourceProcurement{
     private:
     vector<Supply> allSupplies;
     vector<vector<int>> memo; // don't worry this will be intialized before calling it in the knapsack()
     vector<Supply> selectedSupplies;
-
-
-    // filter supplies that are useful in the given season
-    vector<Supply> filterBySeason(string season) {
-        vector<Supply> filtered;
-
-        for (Supply s : allSupplies) {
-            if (season == "summer" && s.seasons.su) filtered.push_back(s);
-            else if (season == "winter" && s.seasons.wi) filtered.push_back(s);
-            else if (season == "autumn" && s.seasons.au) filtered.push_back(s);
-            else if (season == "spring" && s.seasons.sp) filtered.push_back(s);
-        }
-        return filtered;
-    }
     
     // the knapsack logic
     int knapsack(vector<Supply>& s, int budget, int n){
@@ -87,7 +61,7 @@ public:
         selectedSupplies.clear();
 
         // filter supplies according to season
-        vector<Supply> filteredSupplies = filterBySeason(season);
+        vector<Supply> filteredSupplies = filterBySeason(allSupplies ,season);
 
         int n = filteredSupplies.size();
 
