@@ -169,4 +169,3 @@ string getValidTiming(const string& prompt) {
         cout << "Invalid format! Use HHMM-HHMM (e.g. 0900-1200, hours 00-23, minutes 00-59)\n";
     }
 }
-

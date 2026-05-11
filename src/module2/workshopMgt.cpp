@@ -158,9 +158,8 @@ public:
         Gardener g;
 
         while (true) {
-            g.id = getValidInt("const string &prompt")
-            cout << "Enter Gardener ID: ";
-            cin >> g.id;
+            g.id = getValidInt("Enter gardener ID: ");
+            
             if (gardenerExists(g.id)) {
                 cout << "Gardener ID " << g.id << " already registered somewhere. Try another.\n";
             } else {
@@ -169,18 +168,16 @@ public:
         }
 
         cin.ignore();
-        cout << "Enter Gardener Name: ";
-        getline(cin, g.name);
-        cout << "Is the gardener currently working? (1 = Yes, 0 = No): ";
-        cin >> g.isWorking;
+        g.name = getValidName("Enter gardener name: ");
+        
         return g;
     }
 
     void assignSlotToGardener(Gardener g) {
         int wno;
-        cout << "Enter Workshop Number to register in: ";
-        cin >> wno;
-
+        wno = getValidInt("Enter Workshop Number to register in: ");
+        
+        
         int idx = probe(wno);
 
         if (idx == -1 || state[idx] != 1 || table[idx].no != wno) {

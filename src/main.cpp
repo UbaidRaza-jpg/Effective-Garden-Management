@@ -43,6 +43,4 @@ int main() {
         }
 
     } while (choice != 0);
-
-    
 }
