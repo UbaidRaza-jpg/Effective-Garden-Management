@@ -108,8 +108,7 @@ public:
         Workshop w;
 
         while (true) {
-            w.no = getValidInt("Enter Workshop number:");
-            
+            w.no = getValidInt("Enter Workshop number: ");
 
             // uniqueness check
             int idx = probe(w.no);
@@ -119,11 +118,11 @@ public:
                 break;
             }
         }
-
-        cin.ignore();
+        
         w.name = getValidName("Enter Workshop name: ");
         w.timing = getValidTiming("Enter Timing (HHMM-HHMM): ");
         w.totalSlots = getValidInt("Enter total slots: ");
+        w.remainingSlots = w.totalSlots;
 
         w.registrations.resize(w.totalSlots); // fixed-size circular queue (limiting the size of vector)
         w.front  = 0;
@@ -166,10 +165,7 @@ public:
                 break;
             }
         }
-
-        cin.ignore();
-        g.name = getValidName("Enter gardener name: ");
-        
+        g.name = getValidName("Enter gardener name: ");        
         return g;
     }
 
@@ -217,35 +213,35 @@ public:
         Workshop& w = table[idx];
         int registered = w.totalSlots - w.remainingSlots;
 
-        cout << "\n┌─────────────────────────────┐\n";
-        cout << "  Workshop #" << w.no << ": " << w.name << "\n";
-        cout << "  Timing    : " << w.timing << "\n";
-        cout << "  Slots     : " << w.remainingSlots << " / " << w.totalSlots << " remaining\n";
+        cout << "\n+-----------------------------+\n";
+        cout << "|  Workshop #" << w.no << ": " << w.name << "\n";
+        cout << "|  Timing    : " << w.timing << "\n";
+        cout << "|  Slots     : " << w.remainingSlots << " / " << w.totalSlots << " remaining\n";
 
         if (w.remainingSlots == 0)
-            cout << "  Status    : FULL\n";
+            cout << "|  Status    : FULL\n";
         else if ((double)w.remainingSlots / w.totalSlots <= 0.3)
-            cout << "  Status    : ⚠ Limited Spaces!\n";
+            cout << "|  Status    : !! Limited Spaces!\n";
         else
-            cout << "  Status    : Open\n";
+            cout << "|  Status    : Open\n";
 
-        cout << "  Registered Gardeners (" << registered << "):\n";
+        cout << "|  Registered Gardeners (" << registered << "):\n";
 
         if (w.isEmpty || registered == 0) {
-            cout << "    (none yet)\n";
+            cout << "|    (none yet)\n";
         } else {
             int i = w.front;
             for (int j = 0; j < registered; j++) {
                 Gardener& g = w.registrations[i];
-                cout << "  ───────────\n";
-                cout << "  ID     : " << g.id   << "\n";
-                cout << "  Name   : " << g.name << "\n";
-                cout << "  Status : " << (g.isWorking ? "Working" : "Available") << "\n";
+                cout << "|  -----------\n";
+                cout << "|  ID     : " << g.id   << "\n";
+                cout << "|  Name   : " << g.name << "\n";
+                cout << "|  Status : " << (g.isWorking ? "Working" : "Available") << "\n";
                 i = (i + 1) % w.totalSlots;
             }
         }
 
-        cout << "└─────────────────────────────┘\n\n";
+        cout << "+-----------------------------+\n\n";
     }
 
     // ────────────────────────────────────────────
