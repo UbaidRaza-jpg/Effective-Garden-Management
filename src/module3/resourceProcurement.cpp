@@ -1,13 +1,13 @@
+#include<iostream>
 #include<vector>
 #include "../models/Supply.h"
 #include "../utils/utils.h"
 using namespace std;
 
-
 class ResourceProcurement{
     private:
     vector<Supply> allSupplies;
-    vector<vector<int>> memo; // don't worry this will be intialized before calling it in the knapsack()
+    vector<vector<int>> memo; // don't worry, this will be intialized before calling it in the knapsack()
     vector<Supply> selectedSupplies;
     
     // the knapsack logic
@@ -45,7 +45,6 @@ class ResourceProcurement{
             findItems(s, budget, n-1);
         }
     }
-
     
 public:
     
@@ -78,3 +77,76 @@ public:
     }
 
 };
+
+void runResourceProcurement() {
+
+    // sample data
+    vector<Supply> supplies = {        
+        Supply{ "Sunscreen SPF50",      15,     8,      {true,  false,  false,  true }},
+        Supply{ "Insect Repellent",     10,     7,      {true,  false,  true,   false}},
+        Supply{ "Wool Blanket",         40,     9,      {false, true,   true,   false}},
+        Supply{ "Thermal Flask",        25,     8,      {false, true,   true,   true }},
+        Supply{ "Rain Poncho",          20,     9,      {false, false,  true,   true }},
+        Supply{ "Portable Fan",         30,     7,      {true,  false,  false,  false}},
+        Supply{ "First Aid Kit",        35,     10,     {true,  true,   true,   true }},
+        Supply{ "Water Purifier",       50,     10,     {true,  false,  true,   false}},
+        Supply{ "Snow Boots",           60,     9,      {false, true,   false,  false}},
+        Supply{ "Gardening Gloves",     12,     6,      {false, false,  false,  true }},
+        Supply{ "Portable Heater",      55,     9,      {false, true,   false,  false}},
+        Supply{ "Cooling Towel",        10,     6,      {true,  false,  false,  false}},
+        Supply{ "Allergy Medicine",     18,     8,      {false, false,  false,  true }},
+        Supply{ "Emergency Rations",    45,     10,     {true,  true,   true,   true }},
+        Supply{ "Waterproof Bag",       22,     7,      {true,  false,  true,   true }},
+    };
+    
+    int budget;
+    string season;
+    ResourceProcurement rp;
+
+    for (auto &s : supplies) {
+        rp.addSupply(s);
+    }
+
+    cout << "\n===== Resource Procurement System =====\n";
+    budget = getValidInt("Enter your budget: ");
+
+    do {
+        cout << "Enter season (summer/winter/autumn/spring): ";
+        cin >> season;
+
+        // Convert to lowercase so "Summer" or "SUMMER" also works
+        for (char& c : season) c = tolower(c);
+
+        if (season == "summer" || season == "winter" ||
+            season == "autumn" || season == "spring") {
+            break;
+        }
+        cout << "Invalid! Enter one of: summer, winter, autumn, spring\n";
+    } while (true);   
+
+    vector<Supply> best = rp.getBestCombination(budget, season);
+
+    cout << "\n--- Best Supply Combination ---\n";
+
+    if (best.empty()) {
+        cout << "No supplies found for the given budget and season.\n";
+        return;
+    }
+
+    float totalCost = 0;
+    int totalBenefit = 0;
+
+    for (auto& s : best) {
+        cout << "- " << s.name
+             << " | Price: " << s.price
+             << " | Benefit Score: " << s.benefitScore
+             << "\n";
+        totalCost    += s.price;
+        totalBenefit += s.benefitScore;
+    }
+
+    cout << "\nTotal Cost   : " << totalCost    << "\n";
+    cout << "Total Benefit: " << totalBenefit  << "\n";
+    cout << "=======================================\n";
+}
+

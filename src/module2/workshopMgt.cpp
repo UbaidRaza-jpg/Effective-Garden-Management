@@ -3,9 +3,9 @@
 #include <string>
 #include "../models/Gardener.h"
 #include "../models/Workshop.h"
+#include "../utils/utils.h"
 
 using namespace std;
-
 
 // ─────────────────────────────────────────
 //  WORKSHOPMANAGEMENT CLASS
@@ -102,13 +102,14 @@ public:
         cout << "Workshop \"" << w.name << "\" added successfully.\n";
     }
 
+    // ---input function---
     // ── take input for workshop — also checks uniqueness against hashtable ──
     Workshop inputWorkshop() {
         Workshop w;
 
         while (true) {
-            cout << "Enter Workshop Number: ";
-            cin >> w.no;
+            w.no = getValidInt("Enter Workshop number:");
+            
 
             // uniqueness check
             int idx = probe(w.no);
@@ -120,13 +121,10 @@ public:
         }
 
         cin.ignore();
-        cout << "Enter Workshop Name: ";
-        getline(cin, w.name);
-        cout << "Enter Timing (e.g. 10:00 AM - 12:00 PM): ";
-        getline(cin, w.timing);
-        cout << "Enter Total Slots: ";
-        cin >> w.totalSlots;
-        w.remainingSlots = w.totalSlots;
+        w.name = getValidName("Enter Workshop name: ");
+        w.timing = getValidTiming("Enter Timing (HHMM-HHMM): ");
+        w.totalSlots = getValidInt("Enter total slots: ");
+
         w.registrations.resize(w.totalSlots); // fixed-size circular queue (limiting the size of vector)
         w.front  = 0;
         w.isEmpty = true;
@@ -141,6 +139,7 @@ public:
 
     // Check if gardener ID already exists in any workshop
     bool gardenerExists(int gid) {
+
         for (int i = 0; i < capacity; i++) {
             if (state[i] != 1) continue;
             Workshop& w = table[i];
@@ -154,10 +153,12 @@ public:
         return false;
     }
 
+    // ---input finction---
     Gardener inputGardener() {
         Gardener g;
 
         while (true) {
+            g.id = getValidInt("const string &prompt")
             cout << "Enter Gardener ID: ";
             cin >> g.id;
             if (gardenerExists(g.id)) {
@@ -304,9 +305,9 @@ void runWorkshopMgt() {
         cout << "║  4. Remove Gardener          ║\n";
         cout << "║  0. Exit                     ║\n";
         cout << "╚══════════════════════════════╝\n";
-        cout << "Enter choice: ";
-        cin >> choice;
-
+        
+        choice = getValidIntChoice(0, 4, "Enter choice: ");
+        
         switch (choice) {
 
             case 1: {
@@ -323,16 +324,16 @@ void runWorkshopMgt() {
 
             case 3: {
                 int wno;
-                cout << "Enter Workshop Number: ";
-                cin >> wno;
+                wno = getValidInt("Enter workshop number: ");
+                
                 wm.showWorkshopDetails(wno);
                 break;
             }
 
             case 4: {
                 int gid;
-                cout << "Enter Gardener ID to remove: ";
-                cin >> gid;
+                gid = getValidInt("Enetr Gardener ID to remove: ");
+                
                 wm.removeGardener(gid);
                 break;
             }

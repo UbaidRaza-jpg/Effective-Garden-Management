@@ -197,6 +197,7 @@ void runPlantMgt(){
             case 2: {
                 string name = getValidName("Enter Plant Name: ");
                 Plant* found = searchPlant(root, name);
+                
                 if (found) { cout << "Plant Found!\n"; printPlant(found); }
                 else cout << "Plant not found.\n";
                 break;
