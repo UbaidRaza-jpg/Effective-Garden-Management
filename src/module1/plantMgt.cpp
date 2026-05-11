@@ -191,12 +191,12 @@ void runPlantMgt(){
         cout << "|  7. Show Struggling Plants                 |\n";
         cout << "|  0. Exit                                   |\n";
         cout << "+=============================================+\n\n";
-        choice = getValidIntChoice(1, 8, "Enter your choice: ");
+        cout << "Enter choice: ";
+        cin >> choice;
         cout << "\n";
 
         switch (choice) {
             case 1:
-                cout << "\n";
                 root = insertPlant(root, takeInput());
                 break;
             case 2: {
@@ -237,10 +237,10 @@ void runPlantMgt(){
                 if (!root) cout << "No plants in the system.\n";
                 else showStrugglingPlants(root);
                 break;
-            case 8:
+            case 0:
                 cout << "\n";
                 cout << "Exiting system. Goodbye!\n";
         }
-    } while (choice != 8);
+    } while (choice != 0);
     
 }
