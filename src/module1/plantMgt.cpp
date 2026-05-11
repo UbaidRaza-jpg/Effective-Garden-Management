@@ -179,22 +179,28 @@ void runPlantMgt(){
     int choice;
 
     do {
-        cout << "\n===== PLANT MANAGEMENT SYSTEM (AVL TREE) =====\n";
-        cout << "1. Add Plant\n";
-        cout << "2. Search Plant\n";
-        cout << "3. Update Plant\n";
-        cout << "4. Daily Growth Update\n";
-        cout << "5. Display All Plants\n";
-        cout << "6. Show Thriving Plants\n";
-        cout << "7. Show Struggling Plants\n";
-        cout << "8. Exit\n";
+        cout << "\n\n+=============================================+\n";
+        cout << "|     PLANT MANAGEMENT SYSTEM (AVL TREE)     |\n";
+        cout << "+=============================================+\n";
+        cout << "|  1. Add Plant                              |\n";
+        cout << "|  2. Search Plant                           |\n";
+        cout << "|  3. Update Plant                           |\n";
+        cout << "|  4. Daily Growth Update                    |\n";
+        cout << "|  5. Display All Plants                     |\n";
+        cout << "|  6. Show Thriving Plants                   |\n";
+        cout << "|  7. Show Struggling Plants                 |\n";
+        cout << "|  0. Exit                                   |\n";
+        cout << "+=============================================+\n\n";
         choice = getValidIntChoice(1, 8, "Enter your choice: ");
+        cout << "\n";
 
         switch (choice) {
             case 1:
+                cout << "\n";
                 root = insertPlant(root, takeInput());
                 break;
             case 2: {
+                cout << "\n";
                 string name = getValidName("Enter Plant Name: ");
                 Plant* found = searchPlant(root, name);
                 
@@ -203,11 +209,13 @@ void runPlantMgt(){
                 break;
             }
             case 3: {
+                cout << "\n";
                 string name = getValidName("Enter Plant Name to update: ");
                 updatePlant(root, name);
                 break;
             }
             case 4:
+                cout << "\n";
                 if (!root) cout << "No plants in the system.\n";
                 else {
                     dailyGrowthUpdate(root);
@@ -215,18 +223,22 @@ void runPlantMgt(){
                 }
                 break;
             case 5:
+                cout << "\n";
                 if (!root) cout << "No plants in the system.\n";
                 else displayPlants(root);
                 break;
             case 6:
+                cout << "\n";
                 if (!root) cout << "No plants in the system.\n";
                 else showThrivingPlants(root);
                 break;
             case 7:
+                cout << "\n";
                 if (!root) cout << "No plants in the system.\n";
                 else showStrugglingPlants(root);
                 break;
             case 8:
+                cout << "\n";
                 cout << "Exiting system. Goodbye!\n";
         }
     } while (choice != 8);

@@ -13,14 +13,14 @@ int main() {
     int choice;
 
     do {
-        cout << "\n╔══════════════════════════════════════╗\n";
-        cout << "║     GARDEN MANAGEMENT SYSTEM         ║\n";
-        cout << "╠══════════════════════════════════════╣\n";
-        cout << "║  1. Plant Management                 ║\n";
-        cout << "║  2. Workshop Management              ║\n";
-        cout << "║  3. Resource Procurement             ║\n";
-        cout << "║  0. Exit                             ║\n";
-        cout << "╚══════════════════════════════════════╝\n";
+        cout << "\n\n+======================================+\n";
+        cout << "|     GARDEN MANAGEMENT SYSTEM         |\n";
+        cout << "+======================================+\n";
+        cout << "|  1. Plant Management                 |\n";
+        cout << "|  2. Workshop Management              |\n";
+        cout << "|  3. Resource Procurement             |\n";
+        cout << "|  0. Exit                             |\n";
+        cout << "+======================================+\n\n";
         
         choice = getValidIntChoice(0, 3, "Enter choice: ");
         
@@ -36,7 +36,7 @@ int main() {
                 runResourceProcurement();
                 break;
             case 0:
-                cout << "Goodbye!\n";
+                cout << "\nGoodbye!\n";
                 break;
             default:
                 cout << "Invalid choice. Please enter 0-3.\n";

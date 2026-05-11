@@ -293,33 +293,36 @@ void runWorkshopMgt() {
     int choice;
 
     do {
-        cout << "\n╔══════════════════════════════╗\n";
-        cout << "║   Workshop Management Menu   ║\n";
-        cout << "╠══════════════════════════════╣\n";
-        cout << "║  1. Add Workshop             ║\n";
-        cout << "║  2. Register Gardener        ║\n";
-        cout << "║  3. Show Workshop Details    ║\n";
-        cout << "║  4. Remove Gardener          ║\n";
-        cout << "║  0. Exit                     ║\n";
-        cout << "╚══════════════════════════════╝\n";
+        cout << "\n\n+--------------------------------+\n";
+        cout << "|   Workshop Management Menu     |\n";
+        cout << "+--------------------------------+\n";
+        cout << "|  1. Add Workshop               |\n";
+        cout << "|  2. Register Gardener          |\n";
+        cout << "|  3. Show Workshop Details      |\n";
+        cout << "|  4. Remove Gardener            |\n";
+        cout << "|  0. Exit                       |\n";
+        cout << "+--------------------------------+\n\n";
         
         choice = getValidIntChoice(0, 4, "Enter choice: ");
         
         switch (choice) {
 
             case 1: {
+                cout << "\n";
                 Workshop w = wm.inputWorkshop();
                 wm.addWorkshop(w);
                 break;
             }
 
             case 2: {
+                cout << "\n";
                 Gardener g = wm.inputGardener();
                 wm.assignSlotToGardener(g);
                 break;
             }
 
             case 3: {
+                cout << "\n";
                 int wno;
                 wno = getValidInt("Enter workshop number: ");
                 
@@ -328,6 +331,7 @@ void runWorkshopMgt() {
             }
 
             case 4: {
+                cout << "\n";
                 int gid;
                 gid = getValidInt("Enetr Gardener ID to remove: ");
                 
@@ -336,10 +340,12 @@ void runWorkshopMgt() {
             }
 
             case 0:
+                cout << "\n";
                 cout << "Exiting Workshop Management.\n";
                 break;
 
             default:
+                cout << "\n";
                 cout << "Invalid choice. Try again.\n";
         }
 

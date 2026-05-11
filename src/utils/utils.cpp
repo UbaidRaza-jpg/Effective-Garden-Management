@@ -84,28 +84,28 @@ void showGardener(const Gardener& g) {
 
 // 7.
 void showWorkshop(const Workshop& w) {
-    cout << "┌─────────────────────────────┐\n";
-    cout << "  Workshop #" << w.no << ": " << w.name << "\n";
-    cout << "  Timing    : " << w.timing << "\n";
-    cout << "  Slots     : " << w.remainingSlots << " / " << w.totalSlots << " remaining\n";
+    cout << "+-----------------------------+\n";
+    cout << "|  Workshop #" << w.no << ": " << w.name << "\n";
+    cout << "|  Timing    : " << w.timing << "\n";
+    cout << "|  Slots     : " << w.remainingSlots << " / " << w.totalSlots << " remaining\n";
 
     if (w.remainingSlots == 0)
-        cout << "  Status    : FULL\n";
+        cout << "|  Status    : FULL\n";
     else if ((double)w.remainingSlots / w.totalSlots <= 0.3)
-        cout << "  Status    : ⚠ Limited Spaces!\n";
+        cout << "|  Status    : !! Limited Spaces!\n";
     else
-        cout << "  Status    : Open\n";
+        cout << "|  Status    : Open\n";
 
-    cout << "  Registered Gardeners (" << w.registrations.size() << "):\n";
+    cout << "|  Registered Gardeners (" << w.registrations.size() << "):\n";
     if (w.registrations.empty()) {
-        cout << "    (none yet)\n";
+        cout << "|    (none yet)\n";
     } else {
         for (const Gardener& g : w.registrations) {
-            cout << "  ───────────\n";
+            cout << "|  -----------\n";
             showGardener(g);
         }
     }
-    cout << "└─────────────────────────────┘\n";
+    cout << "+-----------------------------+\n";
 }
 
 // 8.
