@@ -1,15 +1,15 @@
-# 🌿 Effective Garden Management System
+# Effective Garden Management System
 
 > **Assignment 03 (Complex Computing Problem)**  
 > Data Structures and Algorithms - 3rd Semester (Spring 2026)
 
 A comprehensive C++ application designed to manage a garden's plants, workshops, and resources effectively. This project demonstrates the practical application of advanced data structures and algorithms in building a structured, menu-driven management system.
 
-## 🚀 Features & Modules
+## Features & Modules
 
 The system is divided into three core modules, each utilizing specific data structures to achieve optimal performance:
 
-### 1. 🌱 Plant Management (AVL Tree)
+### 1. Plant Management (AVL Tree)
 Manages the garden's flora, ensuring balanced and quick access.
 - **Data Structure:** Custom-implemented **AVL Tree**.
 - **Capabilities:**
@@ -18,7 +18,7 @@ Manages the garden's flora, ensuring balanced and quick access.
   - Track plant growth rates based on daily sunlight and water levels.
   - Display thriving or struggling plants based on their growth metrics.
 
-### 2. 🏕️ Workshop Management (Hash Table & Circular Queue)
+### 2. Workshop Management (Hash Table & Circular Queue)
 Handles educational and community workshops in the garden.
 - **Data Structures:** 
   - **Hash Table** with linear probing and auto-rehashing for quick workshop lookups by ID.
@@ -29,14 +29,14 @@ Handles educational and community workshops in the garden.
   - View workshop schedules and participant details.
   - Cancel registrations and adjust queues automatically.
 
-### 3. 💰 Resource Procurement (Dynamic Programming / Knapsack)
+### 3. Resource Procurement (Dynamic Programming / Knapsack)
 Optimizes the budget allocated for seasonal garden supplies.
 - **Algorithm:** **0/1 Knapsack Problem** using Dynamic Programming (Memoization).
 - **Capabilities:**
   - Filters available supplies by season (e.g., Spring, Summer, Winter).
   - Calculates the most optimal combination of supplies to maximize garden impact without exceeding the specified budget.
 
-## 🛠️ Build & Run
+## Build & Run
 
 ### Prerequisites
 - A standard C++ compiler supporting C++11 or later (e.g., GCC, Clang, MSVC).
@@ -56,7 +56,7 @@ Run the compiled executable:
 ```
 *(On Windows, you can also just double-click `garden.exe` if it is pre-compiled)*
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 Effective-Garden-Management/
